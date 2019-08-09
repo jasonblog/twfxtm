@@ -4,6 +4,8 @@
 http://www.bqcms.somee.com/GenCode/Edit
 
 
+## 常用API
+
 ```c
 string account_currency=AccountInfoString(ACCOUNT_CURRENCY);
 Print(account_currency); // USD
