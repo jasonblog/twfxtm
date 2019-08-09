@@ -4,4 +4,5 @@
    * [點差計算](note/dian_cha_ji_suan.md)
    * [範例程式](code/fan_li_cheng_shi.md)
        * [MACD](code/macd.md)
+       * 常用
 
