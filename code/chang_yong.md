@@ -4,6 +4,9 @@
 http://www.bqcms.somee.com/GenCode/Edit
 
 
+https://www.forexfactory.com/forumdisplay.php?f=71
+
+
 ## 常用API
 
 ```c
