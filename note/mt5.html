@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>範例程式 | </title>
+        <title>MT5 | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -41,10 +41,10 @@
         
     
     
-    <link rel="next" href="../note/mt5.html" />
+    <link rel="next" href="../note/python_yu_mt5_tou_guo_socket_gou_tong.html" />
     
     
-    <link rel="prev" href="../code/macd.html" />
+    <link rel="prev" href="../code/chang_yong.html" />
     
 
         <!-- head:end -->
@@ -53,9 +53,9 @@
         <!-- body:start -->
         
     <div class="book"
-        data-level="0.2.2"
-        data-chapter-title="範例程式"
-        data-filepath="code/chang_yong.md"
+        data-level="0.3"
+        data-chapter-title="MT5"
+        data-filepath="note/mt5.md"
         data-basepath=".."
         data-revision="Sun Aug 25 2019 20:25:58 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -133,7 +133,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="0.2.2" data-path="code/chang_yong.html">
+        <li class="chapter " data-level="0.2.2" data-path="code/chang_yong.html">
             
                 
                     <a href="../code/chang_yong.html">
@@ -153,7 +153,7 @@
             
         </li>
     
-        <li class="chapter " data-level="0.3" data-path="note/mt5.html">
+        <li class="chapter active" data-level="0.3" data-path="note/mt5.html">
             
                 
                     <a href="../note/mt5.html">
@@ -227,33 +227,7 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="&#x7BC4;&#x4F8B;&#x7A0B;&#x5F0F;">&#x7BC4;&#x4F8B;&#x7A0B;&#x5F0F;</h1>
-<h2 id="&#x5E38;&#x7528;api">&#x5E38;&#x7528;API</h2>
-<pre><code class="lang-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getinfo</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s)</span>
-</span>{
-    <span class="hljs-comment">// &#x6253;&#x5370;&#x73FE;&#x5728;&#x6642;&#x9593;</span>
-    datetime time[];
-    <span class="hljs-keyword">int</span> copied = sj.gettime(time, <span class="hljs-number">1</span>);
-
-    <span class="hljs-keyword">if</span> (copied &gt; <span class="hljs-number">0</span>) { <span class="hljs-comment">// &#x6570;&#x636E;&#x5DF2;&#x7ECF;&#x88AB;&#x6210;&#x529F;&#x590D;&#x5236;</span>
-        Print(time[<span class="hljs-number">0</span>]);
-    }
-    <span class="hljs-comment">// &#x6253;&#x5370;&#x5E33;&#x6236;&#x8CA8;&#x5E63;</span>
-    <span class="hljs-built_in">string</span> account_currency = AccountInfoString(ACCOUNT_CURRENCY);
-    Print(account_currency);
-    <span class="hljs-comment">// &#x6253;&#x5370;&#x8CA8;&#x5E63;&#x5C0D;</span>
-    Print(s + Symbol());
-    <span class="hljs-comment">// &#x6253;&#x5370;&#x4E0B;&#x55AE;&#x6642;&#x5019;&#x7684;&#x8CB7;&#x8CE3;&#x50F9;</span>
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;ask:%f, bid:%f&quot;</span>, sj.getask(), sj.getbid());
-    <span class="hljs-comment">// &#x6293;&#x53D6;&#x524D;&#x5E7E;4&#x6839;k&#x68D2;, &#x958B;&#x76E4;&#x50F9;, &#x6536;&#x76E4;&#x50F9;,&#x6700;&#x9AD8;&#x6700;&#x4F4E;&#x50F9;</span>
-    MqlRates rates[];
-    sj.getrates(rates, <span class="hljs-number">4</span>);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;open=%f, close=%f, high=%f, low=%f&quot;</span>, rates[<span class="hljs-number">0</span>].open, rates[<span class="hljs-number">0</span>].close, rates[<span class="hljs-number">0</span>].high, rates[<span class="hljs-number">0</span>].low); <span class="hljs-comment">// &#x76EE;&#x524D;&#xFF4B;&#x68D2;</span>
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;open=%f, close=%f, high=%f, low=%f&quot;</span>, rates[<span class="hljs-number">1</span>].open, rates[<span class="hljs-number">1</span>].close, rates[<span class="hljs-number">1</span>].high, rates[<span class="hljs-number">1</span>].low); <span class="hljs-comment">// &#x524D;&#x4E00;&#x6839;</span>
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;open=%f, close=%f, high=%f, low=%f&quot;</span>, rates[<span class="hljs-number">2</span>].open, rates[<span class="hljs-number">2</span>].close, rates[<span class="hljs-number">2</span>].high, rates[<span class="hljs-number">2</span>].low); <span class="hljs-comment">// &#x524D;&#x5169;&#x6839;</span>
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;open=%f, close=%f, high=%f, low=%f&quot;</span>, rates[<span class="hljs-number">3</span>].open, rates[<span class="hljs-number">3</span>].close, rates[<span class="hljs-number">3</span>].high, rates[<span class="hljs-number">3</span>].low); <span class="hljs-comment">// &#x524D;&#x4E09;&#x6839;</span>
-}
-</code></pre>
+                        <h1 id="mt5">MT5</h1>
 
                     
                     </section>
@@ -264,10 +238,10 @@
         </div>
 
         
-        <a href="../code/macd.html" class="navigation navigation-prev " aria-label="Previous page: MACD"><i class="fa fa-angle-left"></i></a>
+        <a href="../code/chang_yong.html" class="navigation navigation-prev " aria-label="Previous page: 範例程式"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../note/mt5.html" class="navigation navigation-next " aria-label="Next page: MT5"><i class="fa fa-angle-right"></i></a>
+        <a href="../note/python_yu_mt5_tou_guo_socket_gou_tong.html" class="navigation navigation-next " aria-label="Next page: python 與MT5 透過 socket 溝通"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

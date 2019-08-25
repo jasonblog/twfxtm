@@ -1,0 +1,479 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book  -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>python 與MT5 透過 socket 溝通 | </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-google_code_prettify/google-code-prettify.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-maxiang/maxiang.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    
+    <link rel="prev" href="../note/mt5.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="0.3.1"
+        data-chapter-title="python 與MT5 透過 socket 溝通"
+        data-filepath="note/python_yu_mt5_tou_guo_socket_gou_tong.md"
+        data-basepath=".."
+        data-revision="Sun Aug 25 2019 20:25:58 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        外匯保證金筆記
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="0.1" data-path="note/dian_cha_ji_suan.html">
+            
+                
+                    <a href="../note/dian_cha_ji_suan.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.</b>
+                        
+                        點差計算
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="0.2" data-path="code/fan_li_cheng_shi.html">
+            
+                
+                    <a href="../code/fan_li_cheng_shi.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.</b>
+                        
+                        常用工具
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="0.2.1" data-path="code/macd.html">
+            
+                
+                    <a href="../code/macd.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.1.</b>
+                        
+                        MACD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="0.2.2" data-path="code/chang_yong.html">
+            
+                
+                    <a href="../code/chang_yong.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.2.</b>
+                        
+                        範例程式
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="0.3" data-path="note/mt5.html">
+            
+                
+                    <a href="../note/mt5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.</b>
+                        
+                        MT5
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="0.3.1" data-path="note/python_yu_mt5_tou_guo_socket_gou_tong.html">
+            
+                
+                    <a href="../note/python_yu_mt5_tou_guo_socket_gou_tong.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.1.</b>
+                        
+                        python 與MT5 透過 socket 溝通
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" ></a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="python-&#x8207;mt5-&#x900F;&#x904E;-socket-&#x6E9D;&#x901A;">python &#x8207;MT5 &#x900F;&#x904E; socket &#x6E9D;&#x901A;</h1>
+<ul>
+<li>server &#x7AEF;</li>
+</ul>
+<pre><code class="lang-py"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-string">&quot;&quot;&quot;
+Created on Tue Feb 19 01:52:04 2019
+
+@author: dmitrievsky
+&quot;&quot;&quot;</span>
+<span class="hljs-keyword">import</span> socket, numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LinearRegression
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">socketserver</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, address = <span class="hljs-string">&apos;&apos;</span>, port = <span class="hljs-number">9090</span>)</span>:</span>
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.address = address
+        self.port = port
+        self.sock.bind((self.address, self.port))
+        self.cummdata = <span class="hljs-string">&apos;&apos;</span>
+        print(<span class="hljs-string">&quot;address: &quot;</span> + address + <span class="hljs-string">&quot;, port: &quot;</span> + str(port))
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">recvmsg</span><span class="hljs-params">(self)</span>:</span>
+        self.sock.listen(<span class="hljs-number">1</span>)
+        self.conn, self.addr = self.sock.accept()
+        print(<span class="hljs-string">&apos;connected to&apos;</span>, self.addr)
+        self.cummdata = <span class="hljs-string">&apos;&apos;</span>
+
+        <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+            data = self.conn.recv(<span class="hljs-number">10000</span>)
+            self.cummdata+=data.decode(<span class="hljs-string">&quot;utf-8&quot;</span>)
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> data:
+                <span class="hljs-keyword">break</span>    
+            self.conn.send(bytes(calcregr(self.cummdata), <span class="hljs-string">&quot;utf-8&quot;</span>))
+            <span class="hljs-keyword">return</span> self.cummdata
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__del__</span><span class="hljs-params">(self)</span>:</span>
+        self.sock.close()
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calcregr</span><span class="hljs-params">(msg = <span class="hljs-string">&apos;&apos;</span>)</span>:</span>
+    chartdata = np.fromstring(msg, dtype=float, sep= <span class="hljs-string">&apos; &apos;</span>) 
+    Y = np.array(chartdata).reshape(-<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+    X = np.array(np.arange(len(chartdata))).reshape(-<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+
+    lr = LinearRegression()
+    lr.fit(X, Y)
+    Y_pred = lr.predict(X)
+
+    P = Y_pred.astype(str).item(-<span class="hljs-number">1</span>) + <span class="hljs-string">&apos; &apos;</span> + Y_pred.astype(str).item(<span class="hljs-number">0</span>)
+    print(P)
+    <span class="hljs-keyword">return</span> str(P)
+
+serv = socketserver(<span class="hljs-string">&apos;127.0.0.1&apos;</span>, <span class="hljs-number">9090</span>)
+
+<span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:  
+    msg = serv.recvmsg()
+</code></pre>
+<ul>
+<li>mq5 client</li>
+</ul>
+<p>&#x53EA;&#x6703;&#x8DD1;&#x4E00;&#x6B21;OnInit , &#x5982;&#x679C;&#x722C;&#x6B77;&#x53F2;&#x8CC7;&#x6599;&#x61C9;&#x8A72;&#x8981;&#x5728;OnInit &#x5EFA; socket &#x50B3;&#x8CC7;&#x6599;</p>
+<pre><code class="lang-cpp"><span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-comment">//|                                               socketclientEA.mq5 |</span>
+<span class="hljs-comment">//|                        Copyright 2018, MetaQuotes Software Corp. |</span>
+<span class="hljs-comment">//|                                             https://www.mql5.com |</span>
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-preprocessor">#property copyright <span class="hljs-string">&quot;Copyright 2018, MetaQuotes Software Corp.&quot;</span></span>
+<span class="hljs-preprocessor">#property link      <span class="hljs-string">&quot;https://www.mql5.com&quot;</span></span>
+<span class="hljs-preprocessor">#property version   <span class="hljs-string">&quot;1.00&quot;</span></span>
+
+sinput <span class="hljs-keyword">int</span> lrlenght = <span class="hljs-number">150</span>;
+<span class="hljs-keyword">int</span> socket;
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-comment">//| Expert initialization function                                   |</span>
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">OnInit</span><span class="hljs-params">()</span>
+</span>{
+    socket = SocketCreate();
+
+    <span class="hljs-keyword">if</span> (socket != INVALID_HANDLE) {
+        <span class="hljs-keyword">if</span> (SocketConnect(socket, <span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-number">9090</span>, <span class="hljs-number">1000</span>)) {
+            Print(<span class="hljs-string">&quot;Connected to &quot;</span>, <span class="hljs-string">&quot; localhost&quot;</span>, <span class="hljs-string">&quot;:&quot;</span>, <span class="hljs-number">9090</span>);
+            MqlRates rates[];
+            <span class="hljs-keyword">double</span> Avg = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">int</span> copied = CopyRates(Symbol(), <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, rates); <span class="hljs-comment">//&#x7372;&#x53D6;&#x6307;&#x5B9A;&#x6578;&#x91CF;&#x7684;&#x6307;&#x5B9A;&#x7B26;&#x865F;&#x5468;&#x671F;&#x7684;MqlRates&#x7D50;&#x69CB;&#x7684;&#x6B77;&#x53F2;&#x6578;&#x64DA;&#x5230;rates_array&#x6578;&#x7D44;</span>
+
+            <span class="hljs-comment">//&#x5546;&#x54C1;&#x540D;&#x7A31;,&#x671F;&#x9593;,&#x958B;&#x59CB;&#x4F4D;&#x7F6E;,&#x8981;&#x5FA9;&#x5236;&#x7684;&#x6578;&#x64DA;&#x8A08;&#x6578;,&#x8981;&#x5FA9;&#x5236;&#x7684;&#x76EE;&#x6A19;&#x6578;&#x7D44;</span>
+            <span class="hljs-keyword">int</span> totalk = fmin(copied, <span class="hljs-number">10</span>);<span class="hljs-comment">//&#x7372;&#x53D6;&#x6578;&#x91CF;&#x82E5;&#x8D85;&#x904E;10&#xFF0C;&#x5247;&#x50C5;&#x8A08;&#x7B97;10</span>
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; totalk; i ++) { <span class="hljs-comment">//&#x8A08;&#x7B97;&#x7E3D;&#x6578;&#x4E4B;&#x958B;&#x76E4;&#x50F9;&#x4E26;&#x8A08;&#x7B97;&#x5E73;&#x5747;&#x503C;</span>
+                Avg += rates[i].open;<span class="hljs-comment">//&#x5C07;&#x958B;&#x76E4;&#x50F9;&#x7D2F;&#x52A0;&#x81F3;Avg&#x8B8A;&#x6578;&#x4E2D;</span>
+            }
+
+            Print(Avg);
+            <span class="hljs-built_in">string</span> received = socksend(socket, <span class="hljs-built_in">string</span>(Avg)) ? socketreceive(socket, <span class="hljs-number">10</span>) : <span class="hljs-string">&quot;&quot;</span>;
+            drawlr(received);
+        } <span class="hljs-keyword">else</span> {
+            Print(<span class="hljs-string">&quot;Connection &quot;</span>, <span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;:&quot;</span>, <span class="hljs-number">9090</span>, <span class="hljs-string">&quot; error &quot;</span>, GetLastError());
+        }    
+    }
+    <span class="hljs-keyword">return</span> (INIT_SUCCEEDED);
+}
+
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-comment">//| Expert deinitialization function                                 |</span>
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnDeinit</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> reason)</span>
+</span>{
+    SocketClose(socket);
+}
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-comment">//| Expert tick function                                             |</span>
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnTick</span><span class="hljs-params">()</span>
+</span>{
+    socket = SocketCreate();
+
+    <span class="hljs-keyword">if</span> (socket != INVALID_HANDLE) {
+        <span class="hljs-keyword">if</span> (SocketConnect(socket, <span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-number">9090</span>, <span class="hljs-number">1000</span>)) {
+            Print(<span class="hljs-string">&quot;Connected to &quot;</span>, <span class="hljs-string">&quot; localhost&quot;</span>, <span class="hljs-string">&quot;:&quot;</span>, <span class="hljs-number">9090</span>);
+
+            <span class="hljs-keyword">double</span> clpr[];
+            <span class="hljs-keyword">int</span> copyed = CopyClose(_Symbol, PERIOD_CURRENT, <span class="hljs-number">0</span>, lrlenght, clpr);
+
+            <span class="hljs-built_in">string</span> tosend;
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; ArraySize(clpr); i++) {
+                tosend += (<span class="hljs-built_in">string</span>)clpr[i] + <span class="hljs-string">&quot; &quot;</span>;
+            }
+
+            <span class="hljs-built_in">string</span> received = socksend(socket, tosend) ? socketreceive(socket, <span class="hljs-number">10</span>) : <span class="hljs-string">&quot;&quot;</span>;
+            drawlr(received);
+        }
+
+        <span class="hljs-keyword">else</span> {
+            Print(<span class="hljs-string">&quot;Connection &quot;</span>, <span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;:&quot;</span>, <span class="hljs-number">9090</span>, <span class="hljs-string">&quot; error &quot;</span>, GetLastError());
+        }
+
+        SocketClose(socket);
+    } <span class="hljs-keyword">else</span> {
+        Print(<span class="hljs-string">&quot;Socket creation error &quot;</span>, GetLastError());
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">socksend</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sock, <span class="hljs-built_in">string</span> request)</span>
+</span>{
+    <span class="hljs-keyword">char</span> req[];
+    <span class="hljs-keyword">int</span>  len = StringToCharArray(request, req) - <span class="hljs-number">1</span>;
+
+    <span class="hljs-keyword">if</span> (len &lt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> (<span class="hljs-literal">false</span>);
+    }
+
+    <span class="hljs-keyword">return</span> (SocketSend(sock, req, len) == len);
+}
+
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">socketreceive</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sock, <span class="hljs-keyword">int</span> timeout)</span>
+</span>{
+    <span class="hljs-keyword">char</span> rsp[];
+    <span class="hljs-built_in">string</span> result = <span class="hljs-string">&quot;&quot;</span>;
+    uint len;
+    uint timeout_check = GetTickCount() + timeout;
+
+    <span class="hljs-keyword">do</span> {
+        len = SocketIsReadable(sock);
+
+        <span class="hljs-keyword">if</span> (len) {
+            <span class="hljs-keyword">int</span> rsp_len;
+            rsp_len = SocketRead(sock, rsp, len, timeout);
+
+            <span class="hljs-keyword">if</span> (rsp_len &gt; <span class="hljs-number">0</span>) {
+                result += CharArrayToString(rsp, <span class="hljs-number">0</span>, rsp_len);
+            }
+        }
+    } <span class="hljs-keyword">while</span> ((GetTickCount() &lt; timeout_check) &amp;&amp; !IsStopped());
+
+    <span class="hljs-keyword">return</span> result;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">drawlr</span><span class="hljs-params">(<span class="hljs-built_in">string</span> points)</span>
+</span>{
+    <span class="hljs-built_in">string</span> res[];
+    StringSplit(points, <span class="hljs-string">&apos; &apos;</span>, res);
+
+    <span class="hljs-keyword">if</span> (ArraySize(res) == <span class="hljs-number">2</span>) {
+        Print(StringToDouble(res[<span class="hljs-number">0</span>]));
+        Print(StringToDouble(res[<span class="hljs-number">1</span>]));
+        datetime temp[];
+        CopyTime(Symbol(), Period(), TimeCurrent(), lrlenght, temp);
+        ObjectCreate(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;regrline&quot;</span>, OBJ_TREND, <span class="hljs-number">0</span>, TimeCurrent(), NormalizeDouble(StringToDouble(res[<span class="hljs-number">0</span>]), _Digits), temp[<span class="hljs-number">0</span>], NormalizeDouble(StringToDouble(res[<span class="hljs-number">1</span>]), _Digits));
+    }
+}
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../note/mt5.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: MT5"><i class="fa fa-angle-left"></i></a>
+        
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-google_code_prettify/google-code-prettify.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-google_code_prettify/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-collapsible-menu/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-maxiang/maxiang.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"google_code_prettify":{},"collapsible-menu":{},"livereload":{},"maxiang":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book  -->
+</html>
