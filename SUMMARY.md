@@ -6,4 +6,5 @@
        * [MACD](code/macd.md)
        * [範例程式](code/chang_yong.md)
    * [MT5](note/mt5.md)
+       * python 與MT5 透過 socket 溝通
 
