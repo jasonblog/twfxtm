@@ -5,5 +5,5 @@
    * [常用工具](code/fan_li_cheng_shi.md)
        * [MACD](code/macd.md)
        * [範例程式](code/chang_yong.md)
-   * MT5
+   * [MT5](note/mt5.md)
 
