@@ -1,6 +1,10 @@
 # python 與MT5 透過 socket 溝通
 
 
+### METATRADER 5 与 PYTHON 的集成：接收和发送数据
+- https://www.mql5.com/zh/articles/5691
+
+
 - server 端
 
 ```py
