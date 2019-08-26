@@ -55,7 +55,7 @@
         data-chapter-title="gcp 與 MT5 透過socket"
         data-filepath="note/gcp_yu_mt5_tou_guo_socket.md"
         data-basepath=".."
-        data-revision="Tue Aug 27 2019 00:51:03 GMT+0800 (CST)"
+        data-revision="Tue Aug 27 2019 00:55:04 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -246,6 +246,116 @@
 <li>gcp ip : 34.80.241.51</li>
 </ul>
 <p><img src="images/&#x64F7;&#x53D6;&#x9078;&#x53D6;&#x5340;&#x57DF;_018.png" alt=""></p>
+<pre><code class="lang-cpp"><span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-comment">//|                                               socketclientEA.mq5 |</span>
+<span class="hljs-comment">//|                        Copyright 2018, MetaQuotes Software Corp. |</span>
+<span class="hljs-comment">//|                                             https://www.mql5.com |</span>
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-preprocessor">#property copyright <span class="hljs-string">&quot;Copyright 2018, MetaQuotes Software Corp.&quot;</span></span>
+<span class="hljs-preprocessor">#property link      <span class="hljs-string">&quot;https://www.mql5.com&quot;</span></span>
+<span class="hljs-preprocessor">#property version   <span class="hljs-string">&quot;1.00&quot;</span></span>
+
+sinput <span class="hljs-keyword">int</span> lrlenght = <span class="hljs-number">150</span>;
+<span class="hljs-keyword">int</span> socket;
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-comment">//| Expert initialization function                                   |</span>
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">OnInit</span><span class="hljs-params">()</span>
+</span>{
+    socket = SocketCreate();
+    <span class="hljs-keyword">return</span> (INIT_SUCCEEDED);
+}
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-comment">//| Expert deinitialization function                                 |</span>
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnDeinit</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> reason)</span>
+</span>{
+    SocketClose(socket);
+}
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-comment">//| Expert tick function                                             |</span>
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnTick</span><span class="hljs-params">()</span>
+</span>{
+    socket = SocketCreate();
+
+    <span class="hljs-keyword">if</span> (socket != INVALID_HANDLE) {
+        <span class="hljs-keyword">if</span> (SocketConnect(socket, <span class="hljs-string">&quot;34.80.241.51&quot;</span>, <span class="hljs-number">9090</span>, <span class="hljs-number">1000</span>)) {
+            Print(<span class="hljs-string">&quot;Connected to &quot;</span>, <span class="hljs-string">&quot;34.80.241.51&quot;</span>, <span class="hljs-string">&quot;:&quot;</span>, <span class="hljs-number">9090</span>);
+
+            <span class="hljs-keyword">double</span> clpr[];
+            <span class="hljs-keyword">int</span> copyed = CopyClose(_Symbol, PERIOD_CURRENT, <span class="hljs-number">0</span>, lrlenght, clpr);
+
+            <span class="hljs-built_in">string</span> tosend;
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; ArraySize(clpr); i++) {
+                tosend += (<span class="hljs-built_in">string</span>)clpr[i] + <span class="hljs-string">&quot; &quot;</span>;
+            }
+
+            <span class="hljs-built_in">string</span> received = socksend(socket, tosend) ? socketreceive(socket, <span class="hljs-number">10</span>) : <span class="hljs-string">&quot;&quot;</span>;
+            drawlr(received);
+        }
+
+        <span class="hljs-keyword">else</span> {
+            Print(<span class="hljs-string">&quot;Connection &quot;</span>, <span class="hljs-string">&quot;34.80.241.51&quot;</span>, <span class="hljs-string">&quot;:&quot;</span>, <span class="hljs-number">9090</span>, <span class="hljs-string">&quot; error &quot;</span>, GetLastError());
+        }
+
+        SocketClose(socket);
+    } <span class="hljs-keyword">else</span> {
+        Print(<span class="hljs-string">&quot;Socket creation error &quot;</span>, GetLastError());
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">socksend</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sock, <span class="hljs-built_in">string</span> request)</span>
+</span>{
+    <span class="hljs-keyword">char</span> req[];
+    <span class="hljs-keyword">int</span>  len = StringToCharArray(request, req) - <span class="hljs-number">1</span>;
+
+    <span class="hljs-keyword">if</span> (len &lt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> (<span class="hljs-literal">false</span>);
+    }
+
+    <span class="hljs-keyword">return</span> (SocketSend(sock, req, len) == len);
+}
+
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">socketreceive</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sock, <span class="hljs-keyword">int</span> timeout)</span>
+</span>{
+    <span class="hljs-keyword">char</span> rsp[];
+    <span class="hljs-built_in">string</span> result = <span class="hljs-string">&quot;&quot;</span>;
+    uint len;
+    uint timeout_check = GetTickCount() + timeout;
+
+    <span class="hljs-keyword">do</span> {
+        len = SocketIsReadable(sock);
+
+        <span class="hljs-keyword">if</span> (len) {
+            <span class="hljs-keyword">int</span> rsp_len;
+            rsp_len = SocketRead(sock, rsp, len, timeout);
+
+            <span class="hljs-keyword">if</span> (rsp_len &gt; <span class="hljs-number">0</span>) {
+                result += CharArrayToString(rsp, <span class="hljs-number">0</span>, rsp_len);
+            }
+        }
+    } <span class="hljs-keyword">while</span> ((GetTickCount() &lt; timeout_check) &amp;&amp; !IsStopped());
+
+    <span class="hljs-keyword">return</span> result;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">drawlr</span><span class="hljs-params">(<span class="hljs-built_in">string</span> points)</span>
+</span>{
+    <span class="hljs-built_in">string</span> res[];
+    StringSplit(points, <span class="hljs-string">&apos; &apos;</span>, res);
+
+    <span class="hljs-keyword">if</span> (ArraySize(res) == <span class="hljs-number">2</span>) {
+        Print(StringToDouble(res[<span class="hljs-number">0</span>]));
+        Print(StringToDouble(res[<span class="hljs-number">1</span>]));
+        datetime temp[];
+        CopyTime(Symbol(), Period(), TimeCurrent(), lrlenght, temp);
+        ObjectCreate(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;regrline&quot;</span>, OBJ_TREND, <span class="hljs-number">0</span>, TimeCurrent(), NormalizeDouble(StringToDouble(res[<span class="hljs-number">0</span>]), _Digits), temp[<span class="hljs-number">0</span>], NormalizeDouble(StringToDouble(res[<span class="hljs-number">1</span>]), _Digits));
+    }
+}
+<span class="hljs-comment">//+------------------------------------------------------------------+</span>
+</code></pre>
 <h2 id="gcp-&#x9632;&#x706B;&#x7246;&#x898F;&#x5247;&#x65B0;&#x589E;-9090-port">gcp &#x9632;&#x706B;&#x7246;&#x898F;&#x5247;&#x65B0;&#x589E; 9090 port</h2>
 <p><img src="images/&#x64F7;&#x53D6;&#x9078;&#x53D6;&#x5340;&#x57DF;_019.png" alt=""></p>
 <h2 id="socket-ip-&#x8981;&#x7528;gcp-&#x5167;&#x90E8;ip-&#x61C9;&#x8A72;&#x6709;mapping-&#x95DC;&#x4FC2;">socket ip &#x8981;&#x7528;gcp &#x5167;&#x90E8;ip &#x61C9;&#x8A72;&#x6709;mapping &#x95DC;&#x4FC2;</h2>
