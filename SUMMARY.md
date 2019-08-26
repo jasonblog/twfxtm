@@ -7,4 +7,5 @@
        * [範例程式](code/chang_yong.md)
    * [MT5](note/mt5.md)
        * [python 與MT5 透過 socket 溝通](note/python_yu_mt5_tou_guo_socket_gou_tong.md)
+       * gcp 與 MT5 透過socket
 
