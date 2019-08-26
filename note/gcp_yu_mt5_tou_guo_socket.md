@@ -16,6 +16,29 @@
 
 ## socket ip 要用gcp 內部ip 應該有mapping 關係
 
+```sh
+[GCP@~]$ ifconfig 
+ens4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
+        inet 10.140.0.3  netmask 255.255.255.255  broadcast 0.0.0.0
+        inet6 fe80::4001:aff:fe8c:3  prefixlen 64  scopeid 0x20<link>
+        ether 42:01:0a:8c:00:03  txqueuelen 1000  (Ethernet)
+        RX packets 32474626  bytes 34101945871 (34.1 GB)
+        RX errors 0  dropped 0  overruns 0  frame 3990
+        TX packets 34804218  bytes 3909916459 (3.9 GB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 11636864  bytes 1036534050 (1.0 GB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 11636864  bytes 1036534050 (1.0 GB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+
+
+
 ```py
 # -*- coding: utf-8 -*-
 """
