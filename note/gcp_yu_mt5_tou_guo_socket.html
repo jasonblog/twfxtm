@@ -1,0 +1,380 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book  -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>gcp 與 MT5 透過socket | </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-google_code_prettify/google-code-prettify.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-maxiang/maxiang.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    
+    <link rel="prev" href="../note/python_yu_mt5_tou_guo_socket_gou_tong.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="0.3.2"
+        data-chapter-title="gcp 與 MT5 透過socket"
+        data-filepath="note/gcp_yu_mt5_tou_guo_socket.md"
+        data-basepath=".."
+        data-revision="Tue Aug 27 2019 00:51:03 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        外匯保證金筆記
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="0.1" data-path="note/dian_cha_ji_suan.html">
+            
+                
+                    <a href="../note/dian_cha_ji_suan.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.</b>
+                        
+                        點差計算
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="0.2" data-path="code/fan_li_cheng_shi.html">
+            
+                
+                    <a href="../code/fan_li_cheng_shi.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.</b>
+                        
+                        常用工具
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="0.2.1" data-path="code/macd.html">
+            
+                
+                    <a href="../code/macd.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.1.</b>
+                        
+                        MACD
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="0.2.2" data-path="code/chang_yong.html">
+            
+                
+                    <a href="../code/chang_yong.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.2.</b>
+                        
+                        範例程式
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="0.3" data-path="note/mt5.html">
+            
+                
+                    <a href="../note/mt5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.</b>
+                        
+                        MT5
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="0.3.1" data-path="note/python_yu_mt5_tou_guo_socket_gou_tong.html">
+            
+                
+                    <a href="../note/python_yu_mt5_tou_guo_socket_gou_tong.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.1.</b>
+                        
+                        python 與MT5 透過 socket 溝通
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="0.3.2" data-path="note/gcp_yu_mt5_tou_guo_socket.html">
+            
+                
+                    <a href="../note/gcp_yu_mt5_tou_guo_socket.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.2.</b>
+                        
+                        gcp 與 MT5 透過socket
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" ></a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="gcp-&#x8207;-mt5-&#x900F;&#x904E;socket">gcp &#x8207; MT5 &#x900F;&#x904E;socket</h1>
+<h2 id="mt5-&#x65B0;&#x589E;webrequest">MT5 &#x65B0;&#x589E;webRequest</h2>
+<ul>
+<li>gcp ip : 34.80.241.51</li>
+</ul>
+<p><img src="images/&#x64F7;&#x53D6;&#x9078;&#x53D6;&#x5340;&#x57DF;_018.png" alt=""></p>
+<h2 id="gcp-&#x9632;&#x706B;&#x7246;&#x898F;&#x5247;&#x65B0;&#x589E;-9090-port">gcp &#x9632;&#x706B;&#x7246;&#x898F;&#x5247;&#x65B0;&#x589E; 9090 port</h2>
+<p><img src="images/&#x64F7;&#x53D6;&#x9078;&#x53D6;&#x5340;&#x57DF;_019.png" alt=""></p>
+<h2 id="socket-ip-&#x8981;&#x7528;gcp-&#x5167;&#x90E8;ip-&#x61C9;&#x8A72;&#x6709;mapping-&#x95DC;&#x4FC2;">socket ip &#x8981;&#x7528;gcp &#x5167;&#x90E8;ip &#x61C9;&#x8A72;&#x6709;mapping &#x95DC;&#x4FC2;</h2>
+<pre><code class="lang-sh">[GCP@~]$ ifconfig 
+ens4: flags=<span class="hljs-number">4163</span>&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu <span class="hljs-number">1460</span>
+        inet <span class="hljs-number">10.140</span>.<span class="hljs-number">0.3</span>  netmask <span class="hljs-number">255.255</span>.<span class="hljs-number">255.255</span>  broadcast <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>
+        inet6 fe80::<span class="hljs-number">4001</span>:aff:fe8c:<span class="hljs-number">3</span>  prefixlen <span class="hljs-number">64</span>  scopeid <span class="hljs-number">0</span>x20&lt;link&gt;
+        ether <span class="hljs-number">42</span>:<span class="hljs-number">01</span>:<span class="hljs-number">0</span>a:<span class="hljs-number">8</span>c:<span class="hljs-number">00</span>:<span class="hljs-number">03</span>  txqueuelen <span class="hljs-number">1000</span>  (Ethernet)
+        RX packets <span class="hljs-number">32474626</span>  bytes <span class="hljs-number">34101945871</span> (<span class="hljs-number">34.1</span> GB)
+        RX errors <span class="hljs-number">0</span>  dropped <span class="hljs-number">0</span>  overruns <span class="hljs-number">0</span>  frame <span class="hljs-number">3990</span>
+        TX packets <span class="hljs-number">34804218</span>  bytes <span class="hljs-number">3909916459</span> (<span class="hljs-number">3.9</span> GB)
+        TX errors <span class="hljs-number">0</span>  dropped <span class="hljs-number">0</span> overruns <span class="hljs-number">0</span>  carrier <span class="hljs-number">0</span>  collisions <span class="hljs-number">0</span>
+
+lo: flags=<span class="hljs-number">73</span>&lt;UP,LOOPBACK,RUNNING&gt;  mtu <span class="hljs-number">65536</span>
+        inet <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>  netmask <span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+        inet6 ::<span class="hljs-number">1</span>  prefixlen <span class="hljs-number">128</span>  scopeid <span class="hljs-number">0</span>x10&lt;host&gt;
+        loop  txqueuelen <span class="hljs-number">1000</span>  (Local Loopback)
+        RX packets <span class="hljs-number">11636864</span>  bytes <span class="hljs-number">1036534050</span> (<span class="hljs-number">1.0</span> GB)
+        RX errors <span class="hljs-number">0</span>  dropped <span class="hljs-number">0</span>  overruns <span class="hljs-number">0</span>  frame <span class="hljs-number">0</span>
+        TX packets <span class="hljs-number">11636864</span>  bytes <span class="hljs-number">1036534050</span> (<span class="hljs-number">1.0</span> GB)
+        TX errors <span class="hljs-number">0</span>  dropped <span class="hljs-number">0</span> overruns <span class="hljs-number">0</span>  carrier <span class="hljs-number">0</span>  collisions <span class="hljs-number">0</span>
+</code></pre>
+<pre><code class="lang-py"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-string">&quot;&quot;&quot;
+Created on Tue Feb 19 01:52:04 2019
+
+@author: dmitrievsky
+&quot;&quot;&quot;</span>
+<span class="hljs-keyword">import</span> socket, numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LinearRegression
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">socketserver</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, address = <span class="hljs-string">&apos;&apos;</span>, port = <span class="hljs-number">9090</span>)</span>:</span>
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.address = address
+        self.port = port
+        self.sock.bind((self.address, self.port))
+        self.cummdata = <span class="hljs-string">&apos;&apos;</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">recvmsg</span><span class="hljs-params">(self)</span>:</span>
+        self.sock.listen(<span class="hljs-number">1</span>)
+        self.conn, self.addr = self.sock.accept()
+        print(<span class="hljs-string">&apos;connected to&apos;</span>, self.addr)
+        self.cummdata = <span class="hljs-string">&apos;&apos;</span>
+
+        <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+            data = self.conn.recv(<span class="hljs-number">10000</span>)
+            self.cummdata+=data.decode(<span class="hljs-string">&quot;utf-8&quot;</span>)
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> data:
+                <span class="hljs-keyword">break</span>    
+            self.conn.send(bytes(calcregr(self.cummdata), <span class="hljs-string">&quot;utf-8&quot;</span>))
+            <span class="hljs-keyword">return</span> self.cummdata
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__del__</span><span class="hljs-params">(self)</span>:</span>
+        self.sock.close()
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calcregr</span><span class="hljs-params">(msg = <span class="hljs-string">&apos;&apos;</span>)</span>:</span>
+    chartdata = np.fromstring(msg, dtype=float, sep= <span class="hljs-string">&apos; &apos;</span>) 
+    Y = np.array(chartdata).reshape(-<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+    X = np.array(np.arange(len(chartdata))).reshape(-<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+
+    lr = LinearRegression()
+    lr.fit(X, Y)
+    Y_pred = lr.predict(X)
+
+    P = Y_pred.astype(str).item(-<span class="hljs-number">1</span>) + <span class="hljs-string">&apos; &apos;</span> + Y_pred.astype(str).item(<span class="hljs-number">0</span>)
+    print(P)
+    <span class="hljs-keyword">return</span> str(P)
+
+serv = socketserver(<span class="hljs-string">&apos;10.140.0.3&apos;</span>, <span class="hljs-number">9090</span>)
+
+<span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:  
+    msg = serv.recvmsg()
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../note/python_yu_mt5_tou_guo_socket_gou_tong.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: python 與MT5 透過 socket 溝通"><i class="fa fa-angle-left"></i></a>
+        
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-google_code_prettify/google-code-prettify.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-google_code_prettify/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-collapsible-menu/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-maxiang/maxiang.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"google_code_prettify":{},"collapsible-menu":{},"livereload":{},"maxiang":{},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book  -->
+</html>
