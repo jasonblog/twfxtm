@@ -1,7 +1,20 @@
 # gcp 與 MT5 透過socket
 
 
+## MT5 新增webRequest
+- gcp ip : 34.80.241.51
 
+
+![](images/擷取選取區域_018.png)
+
+
+
+## gcp 防火牆規則新增 9090 port
+
+![](images/擷取選取區域_019.png)
+
+
+## socket ip 要用gcp 內部ip 應該有mapping 關係
 
 ```py
 # -*- coding: utf-8 -*-
