@@ -10,5 +10,5 @@
        * [gcp 與 MT5 透過socket](note/gcp_yu_mt5_tou_guo_socket.md)
        * [初始化範例](note/chu_shi_hua_fan_li.md)
    * [課程](note/ke_cheng.md)
-       * 紅黑買賣技巧
+       * [紅黑買賣技巧](note/hong_hei_mai_mai_ji_qiao.md)
 
