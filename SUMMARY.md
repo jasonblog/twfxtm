@@ -9,4 +9,5 @@
        * [python 與MT5 透過 socket 溝通](note/python_yu_mt5_tou_guo_socket_gou_tong.md)
        * [gcp 與 MT5 透過socket](note/gcp_yu_mt5_tou_guo_socket.md)
        * [初始化範例](note/chu_shi_hua_fan_li.md)
+   * 課程
 
