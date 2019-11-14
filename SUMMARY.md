@@ -11,5 +11,5 @@
        * [初始化範例](note/chu_shi_hua_fan_li.md)
    * [課程](note/ke_cheng.md)
        * [紅黑買賣技巧](note/hong_hei_mai_mai_ji_qiao.md)
-   * 籌碼面
+   * [籌碼面](chou_ma_mian.md)
 
