@@ -12,5 +12,5 @@
    * [課程](note/ke_cheng.md)
        * [紅黑買賣技巧](note/hong_hei_mai_mai_ji_qiao.md)
    * [籌碼面](chou_ma_mian.md)
-   * SKY 技術面
+   * [SKY 技術面](sky_ji_shu_mian.md)
 
